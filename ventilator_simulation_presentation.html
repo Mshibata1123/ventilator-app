@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' data: https://raw.githubusercontent.com; connect-src 'self';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
@@ -727,7 +727,6 @@
                     <h3>📹 アラーム動画</h3>
                     <div class="media">
                         <video id="alarmVideo" controls playsinline webkit-playsinline preload="metadata" controlslist="nodownload noplaybackrate" disablepictureinpicture>
-                            <source src="data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMWF2YzEAAAAIZnJlZQAAASxtZGF0AQAAAgABBgAAABhhdXRoAAAA" type="video/mp4">
                             お使いのブラウザは動画再生に対応していません。
                         </video>
           </div>
@@ -781,7 +780,7 @@
                 nodes: {
                     'q1_initial': {
                         question: 'Q1-1. 右の動画を再生し、アラーム内容を確認後、どの対応をまず行いますか？',
-                videoSrc: 'https://example.com/high_pressure_alarm.mp4', // オンライン動画URLに変更
+                videoSrc: 'https://raw.githubusercontent.com/Mshibata1123/ventilator-simulation/main/high_pressure_alarm.mp4',
                 choices: [
                             { text: '患者の気道を確認し、必要に応じて痰を吸引する', next: 'q2_circuit_check', correct: true },
                             { text: '人工呼吸器の設定圧を下げる', next: 'q2_spo2_drop', correct: false },
@@ -829,16 +828,6 @@
         // 初期化
         function init() {
             // プレゼンテーション版では履歴機能は簡略化
-            checkAccess();
-        }
-
-        // アクセス制御
-        function checkAccess() {
-            const password = prompt('アクセスパスワードを入力してください:');
-            if (password !== 'ventilator2024') {
-                alert('パスワードが正しくありません。');
-                window.location.href = 'about:blank';
-            }
         }
 
         // 分岐型シナリオ開始
@@ -1191,7 +1180,7 @@
         // 正解音再生
         function playCorrectSound() {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
+            const oscillator = audio-context.createOscillator();
             const gainNode = audioContext.createGain();
             
             oscillator.connect(gainNode);
