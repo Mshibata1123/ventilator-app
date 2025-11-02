@@ -70,6 +70,14 @@
             position: relative;
             overflow: hidden;
         }
+        
+        /* スマートフォンでの背景色を固定 */
+        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+            .card {
+                background-color: rgba(26, 31, 46, 0.7);
+            }
+        }
+
 
         .card::before {
             content: '';
@@ -219,6 +227,12 @@
             border: 1px solid rgba(255,255,255,0.1);
             backdrop-filter: blur(5px);
         }
+        
+        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+            .quiz-section, .media-section {
+                 background-color: rgba(30, 41, 59, 0.7);
+            }
+        }
 
         .media {
             border-radius: 12px;
@@ -299,6 +313,12 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+        }
+        
+        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+            .choice {
+                 background-color: rgba(30, 41, 59, 0.7);
+            }
         }
 
         .choice:hover {
@@ -1180,7 +1200,7 @@
         // 正解音再生
         function playCorrectSound() {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audio-context.createOscillator();
+            const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
             
             oscillator.connect(gainNode);
